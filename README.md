@@ -1,5 +1,5 @@
 # SimpleEcommerce
-<h3>Requerments</h3>
+<h3>Requirements</h3>
 <ol>
   <li>Django</li>
   <li>Pillow</li>
