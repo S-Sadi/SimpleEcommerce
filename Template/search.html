@@ -1,0 +1,91 @@
+{% extends 'home.html' %}
+{% block title %}Search{% endblock %}
+{% block body %}
+{% load static %}
+  <!-- breadcrumb start-->
+<!--  <section class="breadcrumb breadcrumb_bg">-->
+<!--    <div class="container">-->
+<!--      <div class="row justify-content-center">-->
+<!--        <div class="col-lg-8">-->
+<!--          <div class="breadcrumb_iner">-->
+<!--            <div class="breadcrumb_iner_item">-->
+<!--              <h2>Shop Single</h2>-->
+<!--              <p>Home <span>-</span> Shop Single</p>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </section>-->
+  <!-- breadcrumb start-->
+  <!--================End Home Banner Area =================-->
+
+<style>
+  .list-area {
+    width: 100%;
+    max-width: 80%;
+    margin: 100px auto;
+  }
+  .list-area .img-title {
+    font-size: 24px;
+    font-weight: 700px;
+    margin-top: 10px;
+  }
+  .list-area p {
+    font-size: 18px;
+  }
+  .list-area .button2 {
+    text-transform: uppercase;
+    display: flex;
+    grid-gap: 30px;
+    font-size: 19px;
+    transform: translateY(30px);
+    opacity: 0;
+    transition: all 0.3s;
+  }
+  .list-area .button2 a {
+    color: red !important;
+  }
+  .img-box:hover .button2 {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+  .img-box {
+    width: 280px;
+  }
+  .img-box img {
+    width: 100%;
+  }
+  .list {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-gap: 40px;
+    margin: auto;
+  }
+</style>
+
+
+  <!--================Single Product Area =================-->
+<div class="list-area">
+  <div class="list-wrapper">
+    <ul class="list">
+      {% for p in product %}
+      <li class="item">
+        <div class="img-box">
+          <img src="{{p.product_image.url}}" alt="">
+          <h2 class="img-title">{{p.name}}</h2>
+          <p class="price">{{p.price}}</p>
+          <div class="button2">
+            {% if user.is_superuser %}
+            <a href="{% url 'update-product' p.id %}">update</a>
+            {% endif %}
+            <a href="{% url 'checkout' p.id %}">buy now</a>
+          </div>
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+  <!--================End Single Product Area =================-->
+{% endblock %}
